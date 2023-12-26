@@ -2,7 +2,9 @@ import { useState } from "react";
 import {styled }from 'styled-components';
 
 import Button from "./Button.jsx";
-import CustomInput from "./Input.jsx";
+import CustomInput from "./Input.jsx"; 
+import MainInput from "./MainInput.jsx";
+import MainButton from "./MainButton.jsx";
 export default function AuthInputs() {
 
 
@@ -37,10 +39,10 @@ export default function AuthInputs() {
   const passwordNotValid = submitted && enteredPassword.trim().length < 6;
 
   return (
-    <div id="auth-inputs">
-      <ControlContainer>
+    <div id="auth-inputs" className="w-full mx-auto max-w-sm p-8 rounded shadow-md bg-gradient-to-b  from-stone-700 to-stone-800">
+      <div className="flex flex-col gap-2 mb-3">
         
-          <CustomInput
+          {/* <CustomInput
             lable="Email"
             invalid={emailNotValid}
             type="email"
@@ -55,16 +57,33 @@ export default function AuthInputs() {
             onChange={(event) =>
               handleInputChange("password", event.target.value)
             }
+          /> */}
+         
+          <MainInput
+            lable="Email"
+            invalid={emailNotValid}
+            type="email"
+            onChange={(event) => handleInputChange("email", event.target.value)}
           />
         
-      </ControlContainer>
-      <div className="actions">
-        <button type="button" className="text-button">
+       
+          <MainInput
+            type="password"
+            invalid={passwordNotValid}
+            lable="Password"
+            onChange={(event) =>
+              handleInputChange("password", event.target.value)
+            }
+          />
+
+      </div>
+      <div className="flex justify-end gap-4 ">
+        <button type="button" className="text-amber-400 hover:text-amber-500">
           Create a new account
         </button>
-        <Button  onClick={handleLogin}>
+        <MainButton  onClick={handleLogin}>
           Sign In
-        </Button>
+        </MainButton>
       </div>
     </div>
   );
